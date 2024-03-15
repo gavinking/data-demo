@@ -6,22 +6,19 @@ group = 'org.example'
 version = '1.0-SNAPSHOT'
 
 repositories {
+    mavenLocal()
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     maven { url "https://jakarta.oss.sonatype.org/content/repositories/snapshots/" }
     mavenCentral()
-    mavenLocal()
 }
 
 dependencies {
     implementation 'jakarta.data:jakarta.data-api:1.0.0-SNAPSHOT'
-    implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
-    implementation 'jakarta.annotation:jakarta.annotation-api:2.1.1'
     compileOnly 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1'
 
     implementation 'org.hibernate.orm:hibernate-core:6.5.0-SNAPSHOT'
     annotationProcessor 'org.hibernate.orm:hibernate-jpamodelgen:6.5.0-SNAPSHOT'
 
-    implementation 'org.jboss.logging:jboss-logging:3.5.0.Final'
     implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
 
     runtimeOnly 'com.h2database:h2:2.2.224'

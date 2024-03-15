@@ -2,7 +2,6 @@ package org.example;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -14,6 +13,9 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.Set;
 
+import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.FetchType.LAZY;
+
 @Entity
 public class Book {
     @Id
@@ -22,16 +24,16 @@ public class Book {
     @NaturalId
     String title;
 
-    @NaturalId
+    @NaturalId(mutable = true)
     LocalDate publicationDate;
 
     String text;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     @Basic(optional = false)
     Type type = Type.Book;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = LAZY)
     Publisher publisher;
 
     @ManyToMany(mappedBy = Author_.BOOKS)

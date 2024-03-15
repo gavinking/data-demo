@@ -9,7 +9,8 @@ import java.util.Set;
 
 @Entity
 public class Publisher {
-    @Id long id;
+    @Id
+    long id;
 
     @Basic(optional = false)
     String name;
