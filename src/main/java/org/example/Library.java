@@ -1,5 +1,6 @@
 package org.example;
 
+import jakarta.data.Limit;
 import jakarta.data.Order;
 import jakarta.data.Sort;
 import jakarta.data.page.CursoredPage;
@@ -81,5 +82,5 @@ public interface Library {
 	@Find
 	@OrderBy("name")
 	@OrderBy("address.city")
-	List<Author> allAuthors(Order<Author> order);
+	List<Author> allAuthors(Order<Author> order, Limit limit);
 }

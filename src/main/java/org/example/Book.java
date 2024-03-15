@@ -40,7 +40,7 @@ public class Book {
     Set<Author> authors;
 
     @Basic(optional = false)
-    int pages ;
+    int pages;
 
     BigDecimal price;
     BigInteger quantitySold;

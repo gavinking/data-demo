@@ -1,5 +1,6 @@
 package org.example;
 
+import jakarta.data.Limit;
 import org.hibernate.cfg.Configuration;
 
 import java.time.LocalDate;
@@ -34,7 +35,8 @@ public class Main {
 				// run some more @Find-style queries
 				library.publications(Type.Book, _Book.title.asc())
 						.forEach(publication -> out.println(publication.title));
-				library.allAuthors(by(_Author.ssn.descIgnoreCase()))
+				library.allAuthors(by(_Author.ssn.descIgnoreCase()),
+								Limit.of(100))
 						.forEach(author -> out.println(author.name));
 
 				// a simple JDQL query
