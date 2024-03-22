@@ -65,6 +65,14 @@ public class Main {
 					page = library.allBooks(page.nextPageRequest().withoutTotal());
 					out.println(page.content());
 				}
+
+				// here we see a repository that inherits from
+				// a built-in supertype defined by the Data spec
+				final Bookshop bookshop = new Bookshop_(session);
+				bookshop.byPublisher("Manning")
+						.forEach(b -> out.println(b.isbn));
+				bookshop.findAll()
+						.forEach(b -> out.println(b.publicationDate));
 			});
 		}
 	}
