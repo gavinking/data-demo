@@ -4,7 +4,9 @@ import jakarta.data.Limit;
 import jakarta.data.Order;
 import jakarta.data.Sort;
 import jakarta.data.page.CursoredPage;
+import jakarta.data.page.Page;
 import jakarta.data.page.PageRequest;
+import jakarta.data.repository.By;
 import jakarta.data.repository.Delete;
 import jakarta.data.repository.Find;
 import jakarta.data.repository.Insert;
@@ -17,6 +19,7 @@ import jakarta.data.repository.Update;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.example._Author.SSN;
 import static org.example._Book.ISBN;
 import static org.example._Book.TITLE;
 
@@ -36,9 +39,12 @@ public interface Library {
 	@OrderBy(TITLE)
 	List<Book> booksByPublisher(String publisher_name);
 
-	@Query("where title like :titlePattern")
+	@Query("where title like ?1")
 	@OrderBy(TITLE)
 	List<Book> booksByTitle(String titlePattern);
+
+	@Query("update Author set address = :address where ssn = :id")
+	boolean updateAuthorAddress(String id, Address address);
 
 	// not required by Jakarta Data
 	record BookWithAuthor(Book book, Author author) {}
@@ -75,12 +81,27 @@ public interface Library {
 	@Delete
 	void delete(Publisher publisher);
 
+	// pagination
+	@Find
+	@OrderBy(SSN)
+	Page<Author> allAuthors(PageRequest<Author> pageRequest);
+
+	// key-based pagination
 	@Find
 	@OrderBy(ISBN)
 	CursoredPage<Book> allBooks(PageRequest<Book> pageRequest);
 
+	// (static + dynamic) sorting and limiting
 	@Find
 	@OrderBy("name")
 	@OrderBy("address.city")
 	List<Author> allAuthors(Order<Author> order, Limit limit);
+
+	// example queries by fields of embeddables
+
+	@Find
+	List<Author> authorsByCity(@By("address.city") String city);
+
+	@Find
+	List<Author> authorsByCityAndPostcode(String address_city, String address_postcode);
 }

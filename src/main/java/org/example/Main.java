@@ -57,6 +57,12 @@ public class Main {
 				// delete it
 				library.delete(publisher);
 
+				// run an update query
+				session.getTransaction().begin();
+				library.updateAuthorAddress("126-24-9867",
+						new Address("Peachtree Rd", "Atlanta", "3600"));
+				session.getTransaction().commit();
+
 				// run a query that uses "cursor-based" pagination
 				var page = library.allBooks(by(_Book.isbn.ascIgnoreCase()).pageSize(1));
 				out.println(page.totalElements());
