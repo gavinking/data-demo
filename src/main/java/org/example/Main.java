@@ -1,6 +1,7 @@
 package org.example;
 
 import jakarta.data.Limit;
+import jakarta.data.Order;
 import org.hibernate.cfg.Configuration;
 
 import java.time.LocalDate;
@@ -83,6 +84,10 @@ public class Main {
 				// call a user-implemented concrete method
 				bookshop.booksBy("Gavin King")
 						.forEach(out::println);
+
+				// sort by a field of an embeddable
+				bookshop.allAuthors(Order.by(_Author.address_city.descIgnoreCase()))
+						.forEach(author -> out.println(author.name));
 			});
 		}
 	}

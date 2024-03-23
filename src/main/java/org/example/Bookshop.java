@@ -1,5 +1,6 @@
 package org.example;
 
+import jakarta.data.Order;
 import jakarta.data.repository.By;
 import jakarta.data.repository.CrudRepository;
 import jakarta.data.repository.Delete;
@@ -10,6 +11,7 @@ import org.hibernate.annotations.processing.Pattern;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Repository
 public interface Bookshop extends CrudRepository<Book,String> {
@@ -18,6 +20,9 @@ public interface Bookshop extends CrudRepository<Book,String> {
 
     @Delete
     int deleteAll();
+
+    @Find
+    Stream<Author> allAuthors(Order<Author> order);
 
     @Delete
     int deleteByDate(LocalDate publicationDate);
