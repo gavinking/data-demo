@@ -42,6 +42,7 @@ public interface Bookshop extends CrudRepository<Book,String> {
     default List<Book> booksBy(String authorName) {
         return session()
                 .createSelectionQuery("from Book b join b.authors a where a.name = :name", Book.class)
+                .setParameter("name", authorName)
                 .setCacheable(true)
                 .setCacheRegion("books-by-author-name")
                 .setComment("Books by Author name")

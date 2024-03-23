@@ -79,6 +79,10 @@ public class Main {
 						.forEach(b -> out.println(b.isbn));
 				bookshop.findAll()
 						.forEach(b -> out.println(b.publicationDate));
+
+				// call a user-implemented concrete method
+				bookshop.booksBy("Gavin King")
+						.forEach(out::println);
 			});
 		}
 	}
