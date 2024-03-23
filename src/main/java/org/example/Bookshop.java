@@ -37,4 +37,14 @@ public interface Bookshop extends CrudRepository<Book,String> {
 
     // session accessor method
     StatelessSession session();
+
+    // user-implemented concrete method
+    default List<Book> booksBy(String authorName) {
+        return session()
+                .createSelectionQuery("from Book b join b.authors a where a.name = :name", Book.class)
+                .setCacheable(true)
+                .setCacheRegion("books-by-author-name")
+                .setComment("Books by Author name")
+                .getResultList();
+    }
 }
