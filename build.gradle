@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'jakarta.data:jakarta.data-api:1.0.0-SNAPSHOT'
+    implementation 'jakarta.data:jakarta.data-api:1.0.0-M4'
     compileOnly 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1'
 
     implementation 'org.hibernate.orm:hibernate-core:6.5.0-SNAPSHOT'
