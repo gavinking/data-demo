@@ -16,8 +16,8 @@ dependencies {
     implementation 'jakarta.data:jakarta.data-api:1.0.0-M4'
     compileOnly 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1'
 
-    implementation 'org.hibernate.orm:hibernate-core:6.5.0-SNAPSHOT'
-    annotationProcessor 'org.hibernate.orm:hibernate-jpamodelgen:6.5.0-SNAPSHOT'
+    implementation 'org.hibernate.orm:hibernate-core:6.6.0-SNAPSHOT'
+    annotationProcessor 'org.hibernate.orm:hibernate-jpamodelgen:6.6.0-SNAPSHOT'
 
     implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
     compileOnly 'org.jboss.logging:jboss-logging:3.5.0.Final'
