@@ -13,8 +13,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'jakarta.data:jakarta.data-api:1.0.0-M4'
-    compileOnly 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1'
+    implementation 'jakarta.data:jakarta.data-api:1.0.0-RC1'
+    compileOnly 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0'
 
     implementation 'org.hibernate.orm:hibernate-core:6.6.0-SNAPSHOT'
     annotationProcessor 'org.hibernate.orm:hibernate-jpamodelgen:6.6.0-SNAPSHOT'
