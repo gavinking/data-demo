@@ -2,6 +2,7 @@ package org.example;
 
 import jakarta.data.Limit;
 import jakarta.data.Order;
+import jakarta.data.page.PageRequest;
 import org.hibernate.cfg.Configuration;
 
 import java.time.LocalDate;
@@ -65,11 +66,13 @@ public class Main {
 				session.getTransaction().commit();
 
 				// run a query that uses "cursor-based" pagination
-				var page = library.allBooks(by(_Book.isbn.ascIgnoreCase()).pageSize(1));
+				var page = library.allBooks(PageRequest.ofSize(10),
+						by(_Book.title.ascIgnoreCase(), _Book.isbn.asc()));
 				out.println(page.totalElements());
 				out.println(page.content());
 				while (page.hasNext()) {
-					page = library.allBooks(page.nextPageRequest().withoutTotal());
+					page = library.allBooks(page.nextPageRequest().withoutTotal(),
+							by(_Book.title.ascIgnoreCase(), _Book.isbn.asc()));
 					out.println(page.content());
 				}
 

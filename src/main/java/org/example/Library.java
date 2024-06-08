@@ -8,40 +8,45 @@ import jakarta.data.page.Page;
 import jakarta.data.page.PageRequest;
 import jakarta.data.repository.By;
 import jakarta.data.repository.Delete;
-import jakarta.data.repository.Find;
 import jakarta.data.repository.Insert;
 import jakarta.data.repository.OrderBy;
 import jakarta.data.repository.Query;
 import jakarta.data.repository.Repository;
 import jakarta.data.repository.Save;
 import jakarta.data.repository.Update;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.processing.Find;
+import org.hibernate.query.SelectionQuery;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.example._Author.SSN;
-import static org.example._Book.ISBN;
 import static org.example._Book.TITLE;
 
+// A repository interface which makes use of Jakarta Validation constraints
 @Repository
 public interface Library {
 
 	@Find
-	Book book(String isbn);
+	Book book(@NotNull String isbn);
 
 	@Find
-	Book book(String title, LocalDate publicationDate);
+	Book book(@NotBlank String title, @NotNull LocalDate publicationDate);
 
 	@Find
-	List<Book> publications(Type type, Sort<Book> sort);
+	SelectionQuery<Book> book2(@NotBlank String title, @NotNull LocalDate publicationDate);
+
+	@Find
+	List<Book> publications(@NotNull Type type, Sort<Book> sort);
 
 	@Find
 	@OrderBy(TITLE)
-	List<Book> booksByPublisher(String publisher_name);
+	List<Book> booksByPublisher(@NotBlank String publisher_name);
 
 	@Query("where title like ?1")
 	@OrderBy(TITLE)
-	List<Book> booksByTitle(String titlePattern);
+	List<Book> booksByTitle(@NotBlank String titlePattern);
 
 	@Query("update Author set address = :address where ssn = :id")
 	boolean updateAuthorAddress(String id, Address address);
@@ -50,6 +55,17 @@ public interface Library {
 	record BookWithAuthor(Book book, Author author) {}
 	@Query("select b, a from Book b join b.authors a order by b.isbn, a.ssn")
 	List<BookWithAuthor> booksWithAuthors();
+
+	record AuthorBookSummary(String isbn, String ssn, String authorName, String title) {}
+
+	@Query("select isbn, ssn, name, title " +
+			"from Author join books " +
+			"where title like ?1")
+	List<AuthorBookSummary> summariesForTitle(@NotBlank String pattern);
+
+	@Query("delete from Book " +
+			"where extract(year from publicationDate) < :year")
+	int deleteOldBooks(int year);
 
 	@Insert
 	void create(Book book);
@@ -83,13 +99,11 @@ public interface Library {
 
 	// pagination
 	@Find
-	@OrderBy(SSN)
-	Page<Author> allAuthors(PageRequest<Author> pageRequest);
+	Page<Author> allAuthors(PageRequest pageRequest, Sort<Author> sort);
 
 	// key-based pagination
 	@Find
-	@OrderBy(ISBN)
-	CursoredPage<Book> allBooks(PageRequest<Book> pageRequest);
+	CursoredPage<Book> allBooks(PageRequest pageRequest, Order<Book> sort);
 
 	// (static + dynamic) sorting and limiting
 	@Find

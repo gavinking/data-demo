@@ -17,6 +17,8 @@ public class Author {
 
     Address address;
 
+    boolean deceased;
+
     @ManyToMany
     Set<Book> books;
 }

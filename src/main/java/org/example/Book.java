@@ -1,11 +1,13 @@
 package org.example;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import org.hibernate.Length;
 import org.hibernate.annotations.NaturalId;
 
 import java.math.BigDecimal;
@@ -27,6 +29,7 @@ public class Book {
     @NaturalId(mutable = true)
     LocalDate publicationDate;
 
+    @Column(length = Length.LONG)
     String text;
 
     @Enumerated(STRING)
@@ -45,10 +48,11 @@ public class Book {
     BigDecimal price;
     BigInteger quantitySold;
 
-    public Book(String isbn, String title, String text) {
+    public Book(String isbn, String title, String text, Publisher publisher) {
         this.isbn = isbn;
         this.title = title;
         this.text = text;
+        this.publisher = publisher;
     }
 
     protected Book() {}
