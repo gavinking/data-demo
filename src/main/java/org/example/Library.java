@@ -8,6 +8,7 @@ import jakarta.data.page.Page;
 import jakarta.data.page.PageRequest;
 import jakarta.data.repository.By;
 import jakarta.data.repository.Delete;
+import jakarta.data.repository.Find;
 import jakarta.data.repository.Insert;
 import jakarta.data.repository.OrderBy;
 import jakarta.data.repository.Query;
@@ -16,7 +17,6 @@ import jakarta.data.repository.Save;
 import jakarta.data.repository.Update;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.annotations.processing.Find;
 import org.hibernate.query.SelectionQuery;
 
 import java.time.LocalDate;
@@ -34,6 +34,7 @@ public interface Library {
 	@Find
 	Book book(@NotBlank String title, @NotNull LocalDate publicationDate);
 
+	// a repository method returning SelectionQuery for control over query execution
 	@Find
 	SelectionQuery<Book> book2(@NotBlank String title, @NotNull LocalDate publicationDate);
 
@@ -56,8 +57,10 @@ public interface Library {
 	@Query("select b, a from Book b join b.authors a order by b.isbn, a.ssn")
 	List<BookWithAuthor> booksWithAuthors();
 
+	// a record type representing a projection (query select list)
 	record AuthorBookSummary(String isbn, String ssn, String authorName, String title) {}
 
+	// a repository method which returns a record type
 	@Query("select isbn, ssn, name, title " +
 			"from Author join books " +
 			"where title like ?1")
@@ -113,9 +116,11 @@ public interface Library {
 
 	// example queries by fields of embeddables
 
+	// use of the @By annotation
 	@Find
 	List<Author> authorsByCity(@By("address.city") String city);
 
+	// alternative to using @By
 	@Find
 	List<Author> authorsByCityAndPostcode(String address_city, String address_postcode);
 }
