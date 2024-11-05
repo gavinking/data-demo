@@ -14,7 +14,7 @@ dependencies {
     implementation 'jakarta.data:jakarta.data-api:1.0.0'
     compileOnly 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0'
 
-    implementation 'org.hibernate.orm:hibernate-jpamodelgen:6.6.1.Final'
+    implementation 'org.hibernate.orm:hibernate-core:6.6.1.Final'
     annotationProcessor 'org.hibernate.orm:hibernate-jpamodelgen:6.6.1.Final'
 
     implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
