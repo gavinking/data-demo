@@ -96,6 +96,9 @@ public class Main {
 				// sort by a field of an embeddable
 				bookshop.allAuthors(Order.by(_Author.address_city.descIgnoreCase()))
 						.forEach(author -> out.println(author.name));
+
+				// run an analytic query
+				out.println( "Total sales: " +  bookshop.totalSales() );
 			});
 		}
 	}

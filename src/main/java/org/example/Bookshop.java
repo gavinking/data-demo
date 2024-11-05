@@ -5,10 +5,12 @@ import jakarta.data.repository.By;
 import jakarta.data.repository.CrudRepository;
 import jakarta.data.repository.Delete;
 import jakarta.data.repository.Find;
+import jakarta.data.repository.Query;
 import jakarta.data.repository.Repository;
 import org.hibernate.StatelessSession;
 import org.hibernate.annotations.processing.Pattern;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Stream;
@@ -39,6 +41,9 @@ public interface Bookshop extends CrudRepository<Book,String> {
     // @Pattern is a Hibernate extension
     @Find
     List<Book> byTitle(@Pattern String title);
+
+    @Query("select sum(quantitySold * price) from Book")
+    BigDecimal totalSales();
 
     // session accessor method
     StatelessSession session();
