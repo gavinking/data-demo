@@ -18,6 +18,11 @@ public class Main {
 				.forEach(config::addAnnotatedClass);
 
 		try (var sessionFactory = config.buildSessionFactory()) {
+			// export the schema and test data
+			var schemaManager = sessionFactory.getSchemaManager();
+			schemaManager.dropMappedObjects(true);
+			schemaManager.exportMappedObjects(true);
+
 			sessionFactory.inStatelessSession(session -> {
 				// repository is usually injected via CDI
 				// but here we just instantiate it
