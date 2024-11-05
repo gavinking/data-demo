@@ -1,12 +1,13 @@
 package org.example;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.hibernate.Length;
 import org.hibernate.annotations.NaturalId;
 
@@ -21,6 +22,7 @@ import static jakarta.persistence.FetchType.LAZY;
 @Entity
 public class Book {
     @Id
+    @Size(min=10, max = 13)
     String isbn;
 
     @NaturalId
@@ -32,17 +34,18 @@ public class Book {
     @Column(length = Length.LONG)
     String text;
 
+    @NotNull
     @Enumerated(STRING)
-    @Basic(optional = false)
     Type type = Type.Book;
 
-    @ManyToOne(optional = false, fetch = LAZY)
+    @NotNull
+    @ManyToOne(fetch = LAZY)
     Publisher publisher;
 
     @ManyToMany(mappedBy = Author_.BOOKS)
     Set<Author> authors;
 
-    @Basic(optional = false)
+    @NotNull
     int pages;
 
     BigDecimal price;

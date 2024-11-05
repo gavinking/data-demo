@@ -1,9 +1,9 @@
 package org.example;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Set;
 
@@ -12,7 +12,7 @@ public class Author {
     @Id
     String ssn;
 
-    @Basic(optional = false)
+    @NotNull
     String name;
 
     Address address;
@@ -21,5 +21,9 @@ public class Author {
 
     @ManyToMany
     Set<Book> books;
-}
 
+    @Override
+    public String toString() {
+        return name + " [" + ssn + "]";
+    }
+}
