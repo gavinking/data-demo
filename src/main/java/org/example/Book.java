@@ -45,7 +45,6 @@ public class Book {
     @ManyToMany(mappedBy = Author_.BOOKS)
     Set<Author> authors;
 
-    @NotNull
     int pages;
 
     BigDecimal price;
