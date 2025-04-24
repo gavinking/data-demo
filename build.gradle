@@ -13,9 +13,10 @@ repositories {
 dependencies {
     implementation 'jakarta.data:jakarta.data-api:1.0.1'
     compileOnly 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0'
+    implementation 'jakarta.transaction:jakarta.transaction-api:2.0.1'
 
-    implementation 'org.hibernate.orm:hibernate-core:6.6.8.Final'
-    annotationProcessor 'org.hibernate.orm:hibernate-jpamodelgen:6.6.8.Final'
+    implementation 'org.hibernate.orm:hibernate-core:7.0.0.CR1'
+    annotationProcessor 'org.hibernate.orm:hibernate-processor:7.0.0.CR1'
 
     implementation 'org.hibernate.validator:hibernate-validator:8.0.2.Final'
     implementation 'org.glassfish:jakarta.el:4.0.2'
