@@ -3,25 +3,24 @@ package org.example;
 import jakarta.data.Limit;
 import jakarta.data.Order;
 import jakarta.data.page.PageRequest;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.jpa.HibernatePersistenceConfiguration;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import static jakarta.data.Order.by;
 import static java.lang.System.out;
 
 public class Main {
 	public static void main(String[] args) {
-		var config = new Configuration();
-		List.of(Book.class, Author.class, Publisher.class)
-				.forEach(config::addAnnotatedClass);
+		var config =
+				new HibernatePersistenceConfiguration("Jakarta Data Example")
+						.managedClasses(Book.class, Author.class, Publisher.class);
 
-		try (var sessionFactory = config.buildSessionFactory()) {
+		try (var sessionFactory = config.createEntityManagerFactory()) {
 			// export the schema and test data
 			var schemaManager = sessionFactory.getSchemaManager();
-			schemaManager.dropMappedObjects(true);
-			schemaManager.exportMappedObjects(true);
+			schemaManager.drop(true);
+			schemaManager.create(true);
 
 			sessionFactory.inStatelessSession(session -> {
 				// repository is usually injected via CDI
