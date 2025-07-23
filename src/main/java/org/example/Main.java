@@ -23,7 +23,7 @@ public class Main {
 			schemaManager.create(true);
 
 			sessionFactory.inStatelessSession(session -> {
-				// repository is usually injected via CDI
+				// repository is usually injected via CDI,
 				// but here we just instantiate it
 				final Library library = new Library_(session);
 
