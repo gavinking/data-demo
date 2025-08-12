@@ -1,5 +1,3 @@
 Demo app for Hibernate Data Repositories
 ========================================
-A simple demonstration of our implementation of Jakarta Data.
-
-Currently incubating in Hibernate 6.5.
+A simple demonstration of [our implementation](https://hibernate.org/repositories/) of Jakarta Data.
