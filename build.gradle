@@ -19,8 +19,8 @@ dependencies {
     annotationProcessor 'org.hibernate.orm:hibernate-processor:7.1.0.Final'
 
     runtimeOnly 'org.hibernate.orm:hibernate-agroal:7.1.0.Final'
-//    runtimeOnly 'org.hibernate.orm:hibernate-hikaricp:7.1.0-SNAPSHOT'
-//    runtimeOnly 'org.hibernate.orm:hibernate-c3p0:7.1.0-SNAPSHOT'
+//    runtimeOnly 'org.hibernate.orm:hibernate-hikaricp:7.1.0.Final'
+//    runtimeOnly 'org.hibernate.orm:hibernate-c3p0:7.1.0.Final'
 
     implementation 'org.hibernate.validator:hibernate-validator:9.0.0.Final'
     implementation 'org.glassfish.expressly:expressly:6.0.0'
@@ -28,8 +28,8 @@ dependencies {
     implementation 'org.apache.logging.log4j:log4j-core:2.24.1'
 
     runtimeOnly 'com.h2database:h2:2.3.232'
-//    runtimeOnly 'com.mysql:mysql-connector-j:9.0.0'
-//    runtimeOnly 'org.postgresql:postgresql:42.7.4'
+//    runtimeOnly 'com.mysql:mysql-connector-j:9.4.0'
+//    runtimeOnly 'org.postgresql:postgresql:42.7.7'
 }
 
 
