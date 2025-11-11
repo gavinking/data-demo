@@ -15,19 +15,19 @@ dependencies {
     compileOnly 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0'
     implementation 'jakarta.transaction:jakarta.transaction-api:2.0.1'
 
-    implementation 'org.hibernate.orm:hibernate-core:7.1.0.Final'
-    annotationProcessor 'org.hibernate.orm:hibernate-processor:7.1.0.Final'
+    implementation 'org.hibernate.orm:hibernate-core:7.2.0.CR2'
+    annotationProcessor 'org.hibernate.orm:hibernate-processor:7.2.0.CR2'
 
-    runtimeOnly 'org.hibernate.orm:hibernate-agroal:7.1.0.Final'
-//    runtimeOnly 'org.hibernate.orm:hibernate-hikaricp:7.1.0.Final'
-//    runtimeOnly 'org.hibernate.orm:hibernate-c3p0:7.1.0.Final'
+    runtimeOnly 'org.hibernate.orm:hibernate-agroal:7.2.0.CR2'
+//    runtimeOnly 'org.hibernate.orm:hibernate-hikaricp:7.2.0.CR2'
+//    runtimeOnly 'org.hibernate.orm:hibernate-c3p0:7.2.0.CR2'
 
-    implementation 'org.hibernate.validator:hibernate-validator:9.0.0.Final'
+    implementation 'org.hibernate.validator:hibernate-validator:9.1.0.Final'
     implementation 'org.glassfish.expressly:expressly:6.0.0'
 
-    implementation 'org.apache.logging.log4j:log4j-core:2.24.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.25.2'
 
-    runtimeOnly 'com.h2database:h2:2.3.232'
+    runtimeOnly 'com.h2database:h2:2.4.240'
 //    runtimeOnly 'com.mysql:mysql-connector-j:9.4.0'
 //    runtimeOnly 'org.postgresql:postgresql:42.7.7'
 }
