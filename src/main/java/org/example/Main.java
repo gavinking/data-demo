@@ -97,7 +97,7 @@ public class Main {
 						.forEach(author -> out.println(author.name));
 
 				// run an analytic query
-				out.println( "Total sales: " +  bookshop.totalSales() );
+				out.println( "Total sales: " + bookshop.totalSales() );
 			});
 		}
 	}
