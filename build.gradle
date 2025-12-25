@@ -15,12 +15,12 @@ dependencies {
     compileOnly 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.1.0'
     implementation 'jakarta.transaction:jakarta.transaction-api:2.0.1'
 
-    implementation 'org.hibernate.orm:hibernate-core:7.2.0.CR2'
-    annotationProcessor 'org.hibernate.orm:hibernate-processor:7.2.0.CR2'
+    implementation 'org.hibernate.orm:hibernate-core:7.2.0.Final'
+    annotationProcessor 'org.hibernate.orm:hibernate-processor:7.2.0.Final'
 
-    runtimeOnly 'org.hibernate.orm:hibernate-agroal:7.2.0.CR2'
-//    runtimeOnly 'org.hibernate.orm:hibernate-hikaricp:7.2.0.CR2'
-//    runtimeOnly 'org.hibernate.orm:hibernate-c3p0:7.2.0.CR2'
+    runtimeOnly 'org.hibernate.orm:hibernate-agroal:7.2.0.Final'
+//    runtimeOnly 'org.hibernate.orm:hibernate-hikaricp:7.2.0.Final'
+//    runtimeOnly 'org.hibernate.orm:hibernate-c3p0:7.2.0.Final'
 
     implementation 'org.hibernate.validator:hibernate-validator:9.1.0.Final'
     implementation 'org.glassfish.expressly:expressly:6.0.0'
